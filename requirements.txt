@@ -1,1 +1,8 @@
 tox
+pytest
+pytest-cov
+Flask
+Flask-Script
+Flask-Uploads
+flask-mongoengine
+WTForms
