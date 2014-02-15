@@ -7,11 +7,11 @@ python:
     - "pypy"
 
 script:
-    - nosetests -s
+    - python setup.py test
 
 after_success:
     - pip install coveralls
-    - coverage run --source=cars setup.py -q nosetests
+    - coverage run --source=cars setup.py -q tests
     - coveralls
 
 branches:
