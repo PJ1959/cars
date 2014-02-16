@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import url_for
 
-from cars import db
+from . import db
 
 
 class User(db.Document):
