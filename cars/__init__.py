@@ -8,5 +8,6 @@ app.config["SECRET_KEY"] = "super_secret_key"
 
 db = MongoEngine(app)
 
-if __name__ == '__main__':
-    app.run()
+from . import controllers
+
+__version__ = '0.1'
