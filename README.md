@@ -32,9 +32,6 @@ Running tests
 Cars use [pyenv](https://github.com/yyuu/pyenv) to handle multiple python
 versions install it before run `tox`.
 
-Install python versions
------------------------
-
 ```
 pyenv install 2.6.9
 pyenv install 2.7.6
@@ -43,11 +40,13 @@ pyenv install pypy-2.2.1
 pyenv rehash
 ```
 
+Run tox:
+
 ```
 tox
 ```
 
-`tox` will run tests agains python2.6.9, python.2.7.6 and python3.3.4
+`tox` will run tests agains python versions 2.6.9, 2.7.6, 3.3.4 and pypy 2.2.1
 
 Or use `setup.py`:
 
