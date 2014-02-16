@@ -10,7 +10,7 @@ with open('cars/data/photo.jpg') as f:
     car_data['photo'] = f
 
 user_data = {'name': 'Jhon Doe', 'email': 'jhon@doe.com',
-             'pwd': 'jJdD', 'pass': 'jJdD'}
+             'password': 'jJdD', 'confirm': 'jJdD'}
 
 
 def test_add_car():
@@ -42,9 +42,9 @@ def test_add_user():
 
 
 def test_add_user_wrong_password():
-    user_data['pass'] = 'jJjJ'
+    user_data['confirm'] = 'jJjJ'
     response = client.post('/users', data=user_data)
-    assert b'OK' in response.data
+    assert b'invalid' in response.data
 
 
 def login(username, password):
