@@ -5,6 +5,7 @@ from .models import User, Car
 
 app.testing = True
 app.config['WTF_CSRF_ENABLED'] = False
+app.config['MONGODB_SETTINGS'] = {'DB': 'test_cars_controllers'}
 client = app.test_client()
 
 
