@@ -7,3 +7,4 @@ flask-mongoengine
 flask-login
 Flask-WTF
 Flask-Uploads
+gunicorn

@@ -20,7 +20,8 @@ long_description = read('README.md')
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = ['--strict', '--verbose', '--tb=long', '--cov', 'cars', 'cars']
+        self.test_args = ['--strict', '--verbose', '--tb=long',
+                          '--cov', 'cars', 'cars']
         self.test_suite = True
 
     def run_tests(self):
@@ -36,7 +37,8 @@ setup(
     author='Wiliam Souza',
     tests_require=['pytest', 'pytest-cov'],
     install_requires=['Flask', 'Flask-Script', 'flask-mongoengine',
-                      'flask-login', 'Flask-WTF', 'Flask-Uploads'],
+                      'flask-login', 'Flask-WTF', 'Flask-Uploads',
+                      'gunicorn'],
     cmdclass={'test': PyTest},
     author_email='wiliamsouza83@gmail.com',
     description='Cars application',
