@@ -77,7 +77,7 @@ def test_add_car():
     assert b'Thanks for registering' in r.data
     res = login('jhon@doe.com', 'jJdD')
     assert b'You were logged in' in res.data
-    with open('cars/data/photo.jpg') as f:
+    with open('cars/data/photo.jpg', 'rb') as f:
         car_data['photo'] = f
         response = client.post('/cars', data=car_data, follow_redirects=True)
         assert b'New car added' in response.data
