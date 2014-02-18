@@ -6,7 +6,8 @@ from . import db
 
 
 class User(db.Document):
-    email = db.StringField(required=True)
+    authenticated = db.BooleanField(default=False, required=False)
+    email = db.StringField(primary_key=True, required=True)
     name = db.StringField(max_length=64, required=True)
     password = db.StringField(max_length=128, required=True)
     created = db.DateTimeField(default=datetime.now, required=True)
@@ -16,6 +17,18 @@ class User(db.Document):
 
     def __unicode__(self):
         return self.name
+
+    def is_active(self):
+        return True
+
+    def is_authenticated(self):
+        return self.authenticated
+
+    def is_anonymous(self):
+        return False
+
+    def get_id(self):
+        return self.email
 
 
 class Car(db.Document):
