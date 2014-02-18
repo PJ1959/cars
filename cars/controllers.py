@@ -1,3 +1,5 @@
+from pymongo.errors import OperationFailure
+
 from werkzeug import secure_filename
 
 from mongoengine import DoesNotExist, MultipleObjectsReturned
@@ -32,16 +34,20 @@ def search():
     cars = []
     if form.validate_on_submit():
         db = Car._get_db()
-        results = db.command("text", "car", search=form.search.data)['results']
-        for r in results:
-            c = r['obj']
-            car = Car()
-            car.manufacturer = c['manufacturer']
-            car.model = c['model']
-            car.year = c['year']
-            car.photo = c['photo']
-            car.id = c['_id']
-            cars.append(car)
+        try:
+            results = db.command("text", "car",
+                                 search=form.search.data)['results']
+            for r in results:
+                c = r['obj']
+                car = Car()
+                car.manufacturer = c['manufacturer']
+                car.model = c['model']
+                car.year = c['year']
+                car.photo = c['photo']
+                car.id = c['_id']
+                cars.append(car)
+        except OperationFailure:
+            flash('No cars found')
     return render_template('search.html', form=form, cars=cars)
 
 
