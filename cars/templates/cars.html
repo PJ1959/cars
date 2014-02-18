@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block body %}
   <h2>New car</h2>
-  <form method="post" enctype="multipart/form-data" role="form" action="{{ url_for('cars') }}">
+  <form method="post" enctype="multipart/form-data" role="form" action="{{ url }}">
 
     <div class="form-group">
       {{ form.manufacturer.label }}
