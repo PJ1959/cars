@@ -3,6 +3,7 @@ pytest
 pytest-cov
 Flask
 Flask-Script
-Flask-Uploads
 flask-mongoengine
-WTForms
+flask-login
+Flask-WTF
+Flask-Uploads
