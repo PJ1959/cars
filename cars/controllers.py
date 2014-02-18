@@ -38,7 +38,8 @@ def cars():
         if 'photo' in request.files:
             photo = request.files['photo']
             filename = secure_filename(photo.filename)
-            photo.save('cars/data/images/{0}'.format(filename))
+            path = '{0}/{1}'.format(app.config['UPLOAD_FOLDER'], filename)
+            photo.save(path)
             car = Car(manufacturer=form.manufacturer.data,
                       model=form.model.data, year=form.year.data,
                       photo=filename)
@@ -60,7 +61,8 @@ def edit(id):
             photo = request.files['photo']
             filename = secure_filename(photo.filename)
             if filename != '':
-                photo.save('cars/data/images/{0}'.format(filename))
+                path = '{0}/{1}'.format(app.config['UPLOAD_FOLDER'], filename)
+                photo.save(path)
                 car.photo = filename
         car.manufacturer = form.manufacturer.data
         car.model = form.model.data
