@@ -6,7 +6,7 @@ from flask.ext.login import LoginManager
 app = Flask(__name__)
 app.config['MONGODB_SETTINGS'] = {'DB': 'cars'}
 app.config['SECRET_KEY'] = 'super_secret_key'
-app.config['UPLOAD_FOLDER'] = '/home/wiliam/devel/cars/cars/data/images'
+app.config['UPLOAD_FOLDER'] = 'cars/data/images'
 
 db = MongoEngine(app)
 
