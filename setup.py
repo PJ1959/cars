@@ -20,7 +20,7 @@ long_description = read('README.md')
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
-        self.test_args = ['--strict', '--verbose', '--tb=long', 'cars']
+        self.test_args = ['--strict', '--verbose', '--tb=long', '--cov', 'cars', 'cars']
         self.test_suite = True
 
     def run_tests(self):
