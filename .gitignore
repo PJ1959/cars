@@ -21,3 +21,4 @@ cover/
 venv/
 .tox
 .coverage
+cars/data/images/*
