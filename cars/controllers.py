@@ -24,9 +24,10 @@ def load_user(email):
 @app.route('/', methods=['GET', 'POST'])
 def search():
     form = SearchForm()
+    cars = None
     if form.validate_on_submit():
-        print('Search')
-    return render_template('search.html', form=form)
+        cars = Car.objects(model=form.search.data)
+    return render_template('search.html', form=form, cars=cars)
 
 
 @app.route('/cars', methods=['GET', 'POST'])
