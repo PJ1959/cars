@@ -42,7 +42,7 @@ class LoginForm(Form):
 
 
 class SearchForm(Form):
-    search = TextField('Search')
+    search = TextField('Search', [validators.InputRequired()])
 
 
 msg = 'This field is required'
