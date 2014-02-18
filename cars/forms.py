@@ -1,7 +1,7 @@
 from mongoengine import DoesNotExist, MultipleObjectsReturned
 
 from flask_wtf import Form
-from flask_wtf.file import FileField, FileAllowed, FileRequired
+from flask_wtf.file import FileField, FileAllowed
 
 from wtforms import (TextField, PasswordField, validators,
                      ValidationError)
@@ -56,5 +56,4 @@ class CarForm(Form):
                                 validators.InputRequired()])
     year = TextField('Year', [validators.Length(min=4, max=4),
                               validators.InputRequired()])
-    photo = FileField(u'Photo', [FileRequired(message=msg),
-                                 FileAllowed(IMAGES, 'Only images allowed')])
+    photo = FileField(u'Photo', [FileAllowed(IMAGES, 'Only images allowed')])
