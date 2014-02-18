@@ -108,7 +108,3 @@ def logout():
     logout_user()
     flash('You were logged out')
     return redirect(url_for('search'))
-
-
-if __name__ == '__main__':
-    app.run()
