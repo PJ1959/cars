@@ -45,7 +45,40 @@ def cars():
             car.save()
             flash('New car added')
             return redirect(url_for('search'))
-    return render_template('cars.html', form=form)
+    url = url_for('cars')
+    return render_template('cars.html', form=form, url=url)
+
+
+@app.route('/edit/<id>', methods=['GET', 'POST'])
+@login_required
+def edit(id):
+    car = Car.objects.get(id=id)
+    form = CarForm(obj=car)
+    if form.validate_on_submit():
+        filename = None
+        if 'photo' in request.files:
+            photo = request.files['photo']
+            filename = secure_filename(photo.filename)
+            if filename != '':
+                photo.save('cars/data/images/{0}'.format(filename))
+                car.photo = filename
+        car.manufacturer = form.manufacturer.data
+        car.model = form.model.data
+        car.year = form.year.data
+        car.save()
+        flash('Car updated')
+        return redirect(car.edit_absolute_url())
+    url = car.edit_absolute_url()
+    return render_template('cars.html', form=form, url=url)
+
+
+@app.route('/delete/<id>', methods=['GET'])
+@login_required
+def delete(id):
+    cars = Car.objects.get(id=id)
+    cars.delete()
+    flash('Car removed')
+    return redirect(url_for('search'))
 
 
 @app.route('/users', methods=['GET', 'POST'])

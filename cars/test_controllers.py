@@ -83,17 +83,6 @@ def test_add_car():
         assert b'New car added' in response.data
 
 
-def test_add_car_missing_file():
-    car_data = {'year': '1938', 'manufacturer': 'Volkswagen',
-                'model': 'Beetle'}
-    r = client.post('/users', data=user_data, follow_redirects=True)
-    assert b'Thanks for registering' in r.data
-    res = login('jhon@doe.com', 'jJdD')
-    assert b'You were logged in' in res.data
-    response = client.post('/cars', data=car_data, follow_redirects=True)
-    assert b'This field is required' in response.data
-
-
 def test_add_invalid_file():
     car_data = {'year': '1938', 'manufacturer': 'Volkswagen',
                 'model': 'Beetle'}
@@ -105,3 +94,34 @@ def test_add_invalid_file():
         car_data['photo'] = f
         response = client.post('/cars', data=car_data)
         assert b'Only images allowed' in response.data
+
+
+def test_update_car():
+    c = Car(year=1938, manufacturer='Volkswagen', model='Beetle',
+            photo='data/photo.jpg')
+    c.save()
+    assert Car.objects(year=1938).count() == 1
+    r = client.post('/users', data=user_data, follow_redirects=True)
+    assert b'Thanks for registering' in r.data
+    res = login('jhon@doe.com', 'jJdD')
+    assert b'You were logged in' in res.data
+    car_data = {'year': '1950', 'manufacturer': 'Volkswagen',
+                'model': 'Kombi'}
+    url = '/edit/{0}'.format(c.id)
+    response = client.post(url, data=car_data, follow_redirects=True)
+    print(response.data)
+    assert b'Car updated' in response.data
+
+
+def test_delete_car():
+    c = Car(year=1938, manufacturer='Volkswagen', model='Beetle',
+            photo='data/photo.jpg')
+    c.save()
+    assert Car.objects(year=1938).count() == 1
+    r = client.post('/users', data=user_data, follow_redirects=True)
+    assert b'Thanks for registering' in r.data
+    res = login('jhon@doe.com', 'jJdD')
+    assert b'You were logged in' in res.data
+    url = '/delete/{0}'.format(c.id)
+    response = client.get(url, follow_redirects=True)
+    assert b'Car removed' in response.data
