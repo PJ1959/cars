@@ -1,6 +1,8 @@
 Cars catalog
 ============
 
+[![Build Status](https://travis-ci.org/wiliamsouza/cars.png?branch=master)](https://travis-ci.org/wiliamsouza/cars)
+
 A car application writen using Flask and MongoDB.
 
 Get code
