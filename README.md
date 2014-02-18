@@ -19,6 +19,18 @@ Requirements
 pip install -r requirements.txt
 ```
 
+MongoDB
+-------
+
+Enable full text search and create index.
+
+```
+mongo
+use cars
+db.adminCommand( { setParameter : 1, textSearchEnabled : true } )
+db.car.ensureIndex( { manufacturer: "text", model: "text", year: "text" } );
+```
+
 Running development server
 --------------------------
 
