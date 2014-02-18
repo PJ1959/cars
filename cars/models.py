@@ -34,7 +34,7 @@ class User(db.Document):
 class Car(db.Document):
     manufacturer = db.StringField(max_length=128, required=True)
     model = db.StringField(max_length=128, required=True)
-    year = db.IntField(required=True)
+    year = db.StringField(max_length=4, required=True)
     photo = db.StringField(max_length=128)
 
     def edit_absolute_url(self):
@@ -50,6 +50,7 @@ class Car(db.Document):
         return self.model
 
     meta = {
-        'indexes': ['manufacturer', 'model', 'year'],
+        'indexes': [[('manufacturer', 'text'),
+                     ('model', 'text'), ('year', 'text')]],
         'ordering': ['-year']
     }

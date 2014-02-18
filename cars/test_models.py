@@ -13,10 +13,10 @@ def teardown_function(function):
 
 
 def test_add_car():
-    c = Car(year=1938, manufacturer='Volkswagen', model='Beetle',
+    c = Car(year='1938', manufacturer='Volkswagen', model='Beetle',
             photo='data/photo.jpg')
     c.save()
-    assert Car.objects(year=1938).count() == 1
+    assert Car.objects(year='1938').count() == 1
 
 
 """
