@@ -2,8 +2,8 @@ from werkzeug import secure_filename
 
 from mongoengine import DoesNotExist, MultipleObjectsReturned
 
-from flask import (request, redirect, url_for,
-                   render_template, flash)
+from flask import (request, redirect, url_for, render_template,
+                   flash, send_from_directory)
 
 from flask.ext.login import login_required, logout_user
 
@@ -19,6 +19,11 @@ def load_user(email):
         return user
     except (DoesNotExist, MultipleObjectsReturned):
         return None
+
+
+@app.route('/photos/<path:filename>')
+def photos(filename):
+    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
 
 
 @app.route('/', methods=['GET', 'POST'])

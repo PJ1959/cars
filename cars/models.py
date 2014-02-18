@@ -43,6 +43,9 @@ class Car(db.Document):
     def delete_absolute_url(self):
         return url_for('delete', id=self.id)
 
+    def photo_absolute_url(self):
+        return url_for('photos', filename=self.photo)
+
     def __unicode__(self):
         return self.model
 
