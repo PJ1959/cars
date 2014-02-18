@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block body %}
+  <h2>New car</h2>
+  <form method="post" enctype="multipart/form-data" role="form" action="{{ url_for('cars') }}">
+
+    <div class="form-group">
+      {{ form.manufacturer.label }}
+      {{ form.manufacturer(class="form-control") }}
+    </div>
+
+    {% if form.manufacturer.errors %}
+    <ul class="errors">
+      {% for error in form.manufacturer.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="form-group">
+      {{ form.model.label }}
+      {{ form.model(class="form-control") }}
+    </div>
+
+    {% if form.model.errors %}
+    <ul class="errors">
+      {% for error in form.model.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="form-group">
+      {{ form.year.label }}
+      {{ form.year(class="form-control") }}
+    </div>
+
+    {% if form.year.errors %}
+    <ul class="errors">
+      {% for error in form.year.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <div class="form-group">
+      {{ form.photo.label }}
+      {{ form.photo(class="form-control") }}
+    </div>
+
+    {% if form.photo.errors %}
+    <ul class="errors">
+      {% for error in form.photo.errors %}
+      <li>{{ error }}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    {{ form.csrf_token }}
+
+    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Submit" />
+
+  </form>
+{% endblock %}
