@@ -13,7 +13,7 @@ class User(db.Document):
     created = db.DateTimeField(default=datetime.now, required=True)
 
     def get_absolute_url(self):
-        return url_for('users', kwargs={"email": self.email})
+        return url_for('users', email=self.email)
 
     def __unicode__(self):
         return self.name
@@ -35,10 +35,13 @@ class Car(db.Document):
     manufacturer = db.StringField(max_length=128, required=True)
     model = db.StringField(max_length=128, required=True)
     year = db.IntField(required=True)
-    photo = db.StringField(max_length=128, required=True)
+    photo = db.StringField(max_length=128)
 
-    def get_absolute_url(self):
-        return url_for('cars', kwargs={"model": self.model})
+    def edit_absolute_url(self):
+        return url_for('edit', id=self.id)
+
+    def delete_absolute_url(self):
+        return url_for('delete', id=self.id)
 
     def __unicode__(self):
         return self.model
