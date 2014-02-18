@@ -29,9 +29,19 @@ def photos(filename):
 @app.route('/', methods=['GET', 'POST'])
 def search():
     form = SearchForm()
-    cars = None
+    cars = []
     if form.validate_on_submit():
-        cars = Car.objects(model=form.search.data)
+        db = Car._get_db()
+        results = db.command("text", "car", search=form.search.data)['results']
+        for r in results:
+            c = r['obj']
+            car = Car()
+            car.manufacturer = c['manufacturer']
+            car.model = c['model']
+            car.year = c['year']
+            car.photo = c['photo']
+            car.id = c['_id']
+            cars.append(car)
     return render_template('search.html', form=form, cars=cars)
 
 
