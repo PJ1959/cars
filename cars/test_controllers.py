@@ -98,10 +98,10 @@ def test_add_invalid_file():
 
 
 def test_update_car():
-    c = Car(year=1938, manufacturer='Volkswagen', model='Beetle',
+    c = Car(year='1938', manufacturer='Volkswagen', model='Beetle',
             photo='data/photo.jpg')
     c.save()
-    assert Car.objects(year=1938).count() == 1
+    assert Car.objects(year='1938').count() == 1
     r = client.post('/users', data=user_data, follow_redirects=True)
     assert b'Thanks for registering' in r.data
     res = login('jhon@doe.com', 'jJdD')
@@ -115,10 +115,10 @@ def test_update_car():
 
 
 def test_delete_car():
-    c = Car(year=1938, manufacturer='Volkswagen', model='Beetle',
+    c = Car(year='1938', manufacturer='Volkswagen', model='Beetle',
             photo='data/photo.jpg')
     c.save()
-    assert Car.objects(year=1938).count() == 1
+    assert Car.objects(year='1938').count() == 1
     r = client.post('/users', data=user_data, follow_redirects=True)
     assert b'Thanks for registering' in r.data
     res = login('jhon@doe.com', 'jJdD')
