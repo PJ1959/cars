@@ -105,7 +105,7 @@ Enable application
 With `root` user run:
 
 ```
-# cp /etc/apache2/sites-available/cars /etc/apache2/sites-available/cars
+# cp etc/apache2/sites-available/cars /etc/apache2/sites-available/cars
 # a2dissite default
 # a2ensite cars
 ```
