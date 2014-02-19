@@ -67,3 +67,45 @@ Or use `setup.py`:
 ```
 python setup.py test
 ```
+
+Deploy
+======
+
+Apache mod-wsgi
+---------------
+
+```
+# apt-get install libapache2-mod-wsgi
+
+```
+
+MongoDB
+-------
+
+Follow the official [MongoDB instructions](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb)
+
+Code
+----
+
+```
+# apt-get install git
+# apt-get install python-virtualenv
+# cd /srv
+# git clone https://github.com/wiliamsouza/cars.git
+# chown -R ubuntu.ubuntu cars/
+# cd cars
+virtualenv .
+source bin/activate
+pip install -r requirements.txt
+```
+
+Enable application
+------------------
+
+With `root` user run:
+
+```
+# cp /etc/apache2/sites-available/cars /etc/apache2/sites-available/cars
+# a2dissite default
+# a2ensite cars
+```

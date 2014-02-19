@@ -1,17 +1,12 @@
-import os
 from flask import Flask
 
 from flask.ext.mongoengine import MongoEngine
 from flask.ext.login import LoginManager
 
-HOST = 'mongodb://localhost:27017'
-if os.environ.get('MONGOHQ_URL'):
-    HOST = os.environ.get('MONGOHQ_URL')
-
 app = Flask(__name__)
-app.config['MONGODB_SETTINGS'] = {'DB': 'cars', 'HOST': HOST}
+app.config['MONGODB_SETTINGS'] = {'DB': 'cars'}
 app.config['SECRET_KEY'] = 'super_secret_key'
-app.config['UPLOAD_FOLDER'] = 'cars/data/images'
+app.config['UPLOAD_FOLDER'] = '/srv/cars/cars/data/images'
 
 db = MongoEngine(app)
 
