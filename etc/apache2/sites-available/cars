@@ -1,13 +1,16 @@
-<VirtualHost *>
+<VirtualHost *:80>
     ServerName http://ec2-54-207-28-247.sa-east-1.compute.amazonaws.com/
 
     WSGIDaemonProcess cars user=ubuntu group=ubuntu threads=5
-    WSGIScriptAlias / /src/cars/cars.wsgi
+    WSGIScriptAlias / /srv/cars/cars.wsgi
 
-    <Directory /src/csrs>
-        WSGIProcessGroup yourapplication
+    <Directory /srv/cars>
+        WSGIProcessGroup cars
         WSGIApplicationGroup %{GLOBAL}
         Order deny,allow
         Allow from all
     </Directory>
+    ErrorLog /srv/cars/logs/error.log
+    LogLevel warn
+    CustomLog /srv/cars/logs/access.log combined
 </VirtualHost>
