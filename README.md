@@ -19,8 +19,8 @@ Requirements
 pip install -r requirements.txt
 ```
 
-MongoDB
--------
+MongoDB search
+--------------
 
 Enable full text search and create index.
 
@@ -29,6 +29,18 @@ mongo
 use cars
 db.adminCommand( { setParameter : 1, textSearchEnabled : true } )
 db.car.ensureIndex( { manufacturer: "text", model: "text", year: "text" } );
+```
+
+Configuration
+-------------
+
+Before run development server or tests ensure you have changed `UPLOAD_FOLDER`
+to the full path of the project `.../cars/cars/data/images`. The default path
+point to deploy folder `/srv/cars/cars/data/images`. It's is located at
+`cars/__init__.py`:
+
+```
+UPLOAD_FOLDER = '/srv/cars/cars/data/images'
 ```
 
 Running development server
@@ -42,6 +54,8 @@ Open your browser [http://0.0.0.0:5000/](http://0.0.0.0:5000/).
 
 Running tests
 -------------
+
+First things first! **Enable MongoDB full text search and create indexes** [here](#MongoDB search)
 
 Cars use [pyenv](https://github.com/yyuu/pyenv) to handle multiple python
 versions install it before run `tox`.
@@ -83,6 +97,8 @@ MongoDB
 -------
 
 Follow the official [MongoDB instructions](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb)
+
+Remember! after the installation, **Enable MongoDB full text search and create indexes** [here](#MongoDB search)
 
 Code
 ----

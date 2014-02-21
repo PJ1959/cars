@@ -3,7 +3,6 @@ from .models import User, Car
 
 app.testing = True
 app.config['WTF_CSRF_ENABLED'] = False
-app.config['MONGODB_SETTINGS'] = {'DB': 'test_cars_models'}
 client = app.test_client()
 
 
