@@ -17,6 +17,7 @@ app.config['SECRET_KEY'] = 'super_secret_key'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 db = MongoEngine(app)
+db.connection.admin.command('setParameter', textSearchEnabled=True)
 
 lm = LoginManager(app)
 lm.init_app(app)
