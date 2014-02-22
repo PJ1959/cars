@@ -19,8 +19,8 @@ Requirements
 pip install -r requirements.txt
 ```
 
-MongoDB search
---------------
+Search
+------
 
 Enable full text search and create index.
 
@@ -55,7 +55,7 @@ Open your browser [http://0.0.0.0:5000/](http://0.0.0.0:5000/).
 Running tests
 -------------
 
-First things first! **Enable MongoDB full text search and create indexes** [here](#MongoDB search)
+First things first! **Enable MongoDB full text search and create indexes** [here](#Search)
 
 Cars use [pyenv](https://github.com/yyuu/pyenv) to handle multiple python
 versions install it before run `tox`.
@@ -98,7 +98,7 @@ MongoDB
 
 Follow the official [MongoDB instructions](http://docs.mongodb.org/manual/tutorial/install-mongodb-on-ubuntu/#install-mongodb)
 
-Remember! after the installation, **Enable MongoDB full text search and create indexes** [here](#MongoDB search)
+Remember! after the installation, **Enable MongoDB full text search and create indexes** [here](#Search)
 
 Code
 ----
