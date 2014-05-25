@@ -1,1 +1,0 @@
-web: gunicorn cars:app
